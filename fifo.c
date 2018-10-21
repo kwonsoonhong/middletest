@@ -27,17 +27,17 @@ int main(void)
 
 
 	printf("Writer: waiting for a reader.\n");
-	fd = open(FIFO_NAME, o_WRONLY);
+	fd = open(FIFO_NAME, O_WRONLY);
 
 	printf("Writer: the reader ready\n");
 	printf("Writer: your input:");
 
 
 	while(fgets(buf, sizeof(buf), stdin), !feof(stdin)){
-		if(num = write(fd, buf, strlen(buf)) == -1)
+		if((num = write(fd, buf, strlen(buf))) == -1)
 			perror("write error");
 		else
-			printf("Writer: wrote %d bytes\n", num);
+			printf("Writer: wrote %d bytes\n",num);
 	}
 
 
